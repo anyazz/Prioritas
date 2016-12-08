@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+<div class = "form-background">
+    <div class="main-form" style="left: 55%">
+    <div class="title">Register</div> <br>
+    <form action="{{ url_for('register') }}" data-toggle="validator" method="post" id="registerform">
+        <fieldset>
+                <div class="form-group">
+                    <input autocomplete="off" autofocus class="form-control" id="username" name="username" placeholder="Email" style="width: 100%" required type="email"/>
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" data-minlength="8" id="password" name="password" placeholder="Password" style="width: 100%" required type="password"/>
+                    <small color="#FFFFFF">Minimum of 8 characters</small>
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" data-match="#password" data-match-error="passwords don't match"\
+                        id="confirmation" name="password_check" placeholder="Password (again)" style="width: 100%" required type="password"/>
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-default" type="submit" style="background-color: white; margin-left: 0%">Register</button>
+                </div>
+        </fieldset>
+    </form>
+    </div>
+</div>
+{% endblock %}
+

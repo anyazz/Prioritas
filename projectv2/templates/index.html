@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{% endblock %}
+
+{% block main %}
+
+<table class="myTableStyle" align="right" id="grid">
+
+
+        <tr>
+            <th style="padding-bottom: 1%"> Important </th>
+            <th style="padding-bottom: 1%"> Not Important </th>
+        </tr>
+        <tr>
+                <td class="border" style="background-color: #8c3731; height: 30vh">
+                    <input class="form-control" type="text" placeholder="Enter To-Do..." id="input1" style="word-spacing: 3px">
+
+
+                    <ul class="list-group" id="list1">
+                        {% for item in list1 %}
+                        <li class="list-group-item list-group-item-action"><button class="delete">X</button><div>{{list1[loop.index0]}}</div></li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                
+                <td class="border" style="background-color: #ad544e; height: 30vh">
+                    <input class="form-control" type="text" placeholder="Enter To-Do..." id="input2" style="word-spacing: 3px">
+
+                    <ul class="list-group" id="list2">
+                        {% for item in list2 %}
+                        <li class="list-group-item list-group-item-action"><button class="delete">X</button><div>{{list2[loop.index0]}}</div></li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <th class="rotate" style="position: relative; left: -55px"> Urgent </th>
+        <tr>
+        </tr>
+                <td class="border" style="background-color: #7f5e5b; height: 30vh">
+                    <input class="form-control" type="text" placeholder="Enter To-Do..." id="input3" style="word-spacing: 3px">
+
+                    <ul class="list-group" id="list3">
+                        {% for item in list3 %}
+                        <li class="list-group-item list-group-item-action"><button class="delete">X</button><div>{{list3[loop.index0]}}</div></li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td class="border" style="background-color: #cc9692; height: 30vh">
+                    <input class="form-control" type="text" placeholder="Enter To-Do..." id="input4" style="word-spacing: 3px">
+
+                    <ul class="list-group" id="list4">
+                        {% for item in list4 %}
+                        <li class="list-group-item list-group-item-action"><button class="delete">X</button><div>{{list4[loop.index0]}}</div></li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <th class="rotate" style="position: relative; left: -55px"> Not Urgent </th>
+        </tr>
+
+
+       
+    </table>
+    </div>
+
+
+<audio id="alarm" type="audio/mpeg" src="static/alarm.mp3"></audio>
+
+
+{% endblock %}

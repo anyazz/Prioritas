@@ -1,0 +1,187 @@
+.main-timer {
+    width: 800px;
+    height: 200px;
+    margin-bottom: 10px;
+    position: relative;    
+
+}
+small.codeType {
+    position: absolute;
+    top: -2px;
+    right: 5px;
+    font-weight: bold;
+    color: #900;
+}
+h2,h3 {
+    margin-top: 1.5em;
+}
+
+pre {
+    position: relative;
+}
+.code {
+    position: relative;
+    font-family: Monaco,Menlo,Consolas,"Courier New",monospace;
+    font-size: 13px;
+    line-height: 1.428571429;
+    color: #000;
+    white-space: pre-line;
+}
+
+.nav li {
+    list-style: none;
+}
+.nav li a {
+    color: #60686F;
+    display: block;
+}
+.nav li a:hover {
+    text-decoration: none;
+    background-color: rgb(238, 238, 238);
+}
+.container {
+    padding-top: 70px;
+}
+.container .nav li.active > a {
+    border-right: solid #C0C8CF 2px;
+    font-weight: bold;
+}
+.navbar-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1170px;
+}
+
+
+.nav li.active {
+}
+
+.nav li ul {
+    display: none;
+}
+
+.nav li.active ul {
+    display: block;
+}
+
+td {
+    vertical-align: top;
+    padding: 5px;
+}
+.nopadding td {
+    padding: 2px;
+}
+tr.centered > td {
+    text-align: center;
+}
+
+td input {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    border: solid #CCC 1px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 30px;
+    padding: 4px;
+    margin: 0px;
+}
+td input[type=checkbox] {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+}
+
+td label {
+    display: inline-block;
+    width: 200px;
+}
+td label + div {
+    display: inline-block;
+    width: 400px;
+}
+.colorpicker {
+    display: none;
+    position: absolute;
+    background-color: #EEE;
+    padding: 10px;
+    border: solid #999 1px;
+    border-radius: 4px;
+    z-index: 999999;
+}
+
+#DateCountdownJs {
+    box-sizing: border-box;
+    height: 525px;
+}
+#DateCountdownHtml {
+    box-sizing: border-box;
+    height: 39px;
+}
+#DateCountdown {
+    height: 282px;
+}
+
+span.expand, span.collapse {
+    float: right;
+}
+.collapsable-opened span.expand { display: none; }  
+.collapsable-opened span.collapse { display: inline-block; }  
+.collapsable-closed span.expand { display: inline-block; }  
+.collapsable-closed span.collapse { display: none; }
+
+.collapsable .panel-heading {
+    cursor: pointer;
+}
+
+#AnimationDropdown {
+    width: 100%;
+}
+
+.presets a {
+    display: block;
+    margin-bottom: 4px;
+}
+
+#Errors {
+    display: none;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    padding: 10px 15px;
+    background-color: #f2dede;
+    border-top: solid #ebccd1 1px;
+    color: #a94442;
+    z-index: 9999999;
+}
+#Errors h3 {
+    margin-top: 0;
+}
+#Errors .error {
+    display: block;
+    text-align: right;
+}
+#Errors .error .error-message {
+    float: left;
+}
+#Errors .error .error-url {
+    font-family: Monaco,Menlo,Consolas,"Courier New",monospace;
+    font-size: 13px;
+}
+#Errors .error .error-line {
+    font-weight: bold;
+    font-family: Monaco,Menlo,Consolas,"Courier New",monospace;
+    font-size: 13px;
+    display: inline-block;
+    width: 110px;
+}
+#Errors .error .error-line:before {
+    display: inline-block;
+    content: ' (Line:';
+    padding-right: 10px;
+}
+#Errors .error .error-line:after {
+    display: inline-block;
+    content: ')';
+}
