@@ -1,5 +1,4 @@
 from library50 import cs50
-from library50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, url_for, jsonify
 from flask_session import Session
 from passlib.apps import custom_app_context as pwd_context
@@ -14,7 +13,7 @@ from functools import wraps
 import sqlalchemy
 
 
-
+# taken from CS50 Python Library due to issues with importing
 class SQL(object):
     """TODO"""
 
