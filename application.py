@@ -12,7 +12,7 @@ import os
 # import urllib.request
 from functools import wraps
 import sqlalchemy
-from flask_cors import CORS, cross_origin
+from flask.ext.cors import CORS, cross_origin
 
 # taken from CS50 Python Library due to issues with importing
 class SQL(object):
