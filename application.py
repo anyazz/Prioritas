@@ -2,6 +2,7 @@ from library50 import cs50
 from flask import Flask, flash, redirect, render_template, request, session, url_for, jsonify
 from flask_session import Session
 from flask_jsglue import JSGlue
+# from flask_sqlalchemy import SQLAlchemy
 from passlib.apps import custom_app_context as pwd_context
 from tempfile import gettempdir
 from time import gmtime, strftime
@@ -13,7 +14,6 @@ import os
 # import urllib.request
 from functools import wraps
 import sqlalchemy
-# from flask.ext.cors import CORS, cross_origin
 
 # taken from CS50 Python Library due to issues with importing
 class SQL(object):
@@ -60,9 +60,6 @@ class SQL(object):
 app = Flask(__name__)
 JSGlue(app)
 
-# cors = CORS(app, resources={r"/*": {"origins": "*"}})
-# app.config['CORS_HEADERS'] = 'Content-Type'
-
 
 # ensure responses aren't cached
 if app.config["DEBUG"]:
@@ -80,7 +77,9 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # configure CS50 Library to use SQLite database
-db = SQL("sqlite:///projectv2.db")
+db = SQL("postgresql://localhost/Anya")
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/postgresql-encircled-95515'
+# db = SQLAlchemy(app)
 
 def login_required(f):
     """
