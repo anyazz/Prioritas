@@ -12,7 +12,7 @@ import os
 # import urllib.request
 from functools import wraps
 import sqlalchemy
-from flask.ext.cors import CORS, cross_origin
+from flask_cors import CORS, cross_origin
 
 # taken from CS50 Python Library due to issues with importing
 class SQL(object):
@@ -293,7 +293,7 @@ def password():
         return render_template("password.html")
 
 @app.route("/saveTodo")
-@cross_origin(origin='localhost',headers=['Content-Type','Authorization'])
+@cross_origin()
 def saveTodo():
     """Save user-inputted task to SQL."""
 
@@ -302,7 +302,7 @@ def saveTodo():
     return jsonify(dict());
     
 @app.route("/removeTodo")
-@cross_origin(origin='localhost',headers=['Content-Type','Authorization'])
+@cross_origin()
 def removeTodo():
     """Delete task from SQL."""
 
@@ -311,6 +311,7 @@ def removeTodo():
     return jsonify(dict());
 
 @app.route("/updateTime")
+@cross_origin()
 def updateTime():
     
     
@@ -321,6 +322,7 @@ def updateTime():
 
 
 @app.route("/getTime")
+@cross_origin()
 def getTime():
     # get number of pomodoros for todo
     time = db.execute("SELECT pomodoros FROM todos WHERE (user_id = :id AND todo = :todo AND category = :category)", id=session["user_id"], todo=request.args.get("todo"), 
