@@ -293,7 +293,7 @@ def password():
         return render_template("password.html")
 
 @app.route("/saveTodo")
-@cross_origin()
+@cross_origin(origin='localhost',headers=['Content-Type','Authorization'])
 def saveTodo():
     """Save user-inputted task to SQL."""
 
@@ -302,7 +302,7 @@ def saveTodo():
     return jsonify(dict());
     
 @app.route("/removeTodo")
-@cross_origin()
+@cross_origin(origin='localhost',headers=['Content-Type','Authorization'])
 def removeTodo():
     """Delete task from SQL."""
 
