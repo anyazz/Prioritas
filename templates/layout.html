@@ -21,11 +21,11 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
-        <script type="text/javascript" src="static/TimeCircles.js"></script>
-        <link href="static/TimeCircles.css" rel="stylesheet">
-        <link href="static/TCexample.css" rel="stylesheet">
+        <script type="text/javascript" src="{{ url_for('static', filename='TimeCirlces.js') }}"></script>
+        <link href="{{ url_for('static', filename='TimeCircles.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='TCexample.css') }}" rel="stylesheet">
 
-        <link rel='shortcut icon' type='image/x-icon' href='templates/favicon.ico' />
+        <link rel='shortcut icon' type='image/x-icon' href="{{ url_for('templates', filename='favicon.ico') }}" />
         
         <title class="title">
             Prioritas {% block title %}{% endblock %}
@@ -84,7 +84,7 @@
             <main id="main-html">
                 {% block main %}{% endblock %}
             </main>
-            <script type="text/javascript" src="static/scripts.js"></script>
+            <script type="text/javascript" src="{{ url_for('static', filename='scripts.js') }}"></script>
 
         </div>
 

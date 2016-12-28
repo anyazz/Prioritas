@@ -1,6 +1,7 @@
 from library50 import cs50
 from flask import Flask, flash, redirect, render_template, request, session, url_for, jsonify
 from flask_session import Session
+from flask_jsglue import JSGlue
 from passlib.apps import custom_app_context as pwd_context
 from tempfile import gettempdir
 from time import gmtime, strftime
@@ -12,7 +13,7 @@ import os
 # import urllib.request
 from functools import wraps
 import sqlalchemy
-from flask.ext.cors import CORS, cross_origin
+# from flask.ext.cors import CORS, cross_origin
 
 # taken from CS50 Python Library due to issues with importing
 class SQL(object):
@@ -57,8 +58,10 @@ class SQL(object):
 
 # configure application
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
-app.config['CORS_HEADERS'] = 'Content-Type'
+JSGlue(app)
+
+# cors = CORS(app, resources={r"/*": {"origins": "*"}})
+# app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 # ensure responses aren't cached
@@ -293,25 +296,20 @@ def password():
         return render_template("password.html")
 
 @app.route("/saveTodo")
-@cross_origin()
 def saveTodo():
     """Save user-inputted task to SQL."""
-    response.headers.add('Access-Control-Allow-Origin', '*')
     # add todo & corresponding data to table
     db.execute("INSERT INTO todos (user_id, todo, category) VALUES (:id, :todo, :category)", id=session["user_id"], todo=request.args.get("todo"), category=request.args.get("category"))
     return jsonify(dict());
     
 @app.route("/removeTodo")
-@cross_origin()
 def removeTodo():
     """Delete task from SQL."""
-    response.headers.add('Access-Control-Allow-Origin', '*')
     # remove todo & corresponding data from table
     db.execute("DELETE FROM todos WHERE (user_id = :id AND todo = :todo AND category = :category)", id=session["user_id"], todo=request.args.get("todo"), category=request.args.get("category"))
     return jsonify(dict());
 
 @app.route("/updateTime")
-@cross_origin()
 def updateTime():
     
     
@@ -322,7 +320,6 @@ def updateTime():
 
 
 @app.route("/getTime")
-@cross_origin()
 def getTime():
     # get number of pomodoros for todo
     time = db.execute("SELECT pomodoros FROM todos WHERE (user_id = :id AND todo = :todo AND category = :category)", id=session["user_id"], todo=request.args.get("todo"), 
