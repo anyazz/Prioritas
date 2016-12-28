@@ -2,8 +2,8 @@
 const ENTER_KEY = 13;
 const FLASH_MS = 400;
 const CHECK_MS = 500;
-const TIMER_SECS = 1801;
-const BREAK_SECS=300;
+const TIMER_SECS = 11;
+const BREAK_SECS=5;
 const SECS_PER_MIN = 60;
 const DONE_MS = 1000;
 const GREEN = "#518e37";
@@ -74,7 +74,7 @@ $("document").ready(function()
 			// call Python saveTodo function; if successful, add to table
 			$.ajax(
 			{
-				url: "http://ide50-anyazhang.cs50.io/saveTodo",
+				url: Flask.url_for("saveTodo"),
 				data: parameters,
 				success: function()
 				{
@@ -161,7 +161,7 @@ $("document").ready(function()
 		// call python function to remove from SQL       
 		$.ajax(
 		{
-			url: "http://ide50-anyazhang.cs50.io/removeTodo",
+				url: Flask.url_for("removeTodo"),
 			data: parameters,
 			success: function()
 			{
@@ -212,7 +212,7 @@ $("document").ready(function()
 		$.ajax(
 		{
 			async: false,
-			url: "http://ide50-anyazhang.cs50.io/getTime",
+				url: Flask.url_for("getTime"),
 			data: parameters,
 			success: function(data)
 			{
@@ -298,7 +298,7 @@ $("document").ready(function()
 		}
 		$.ajax(
 		{
-			url: "http://ide50-anyazhang.cs50.io/updateTime",
+				url: Flask.url_for("updateTime"),
 			data: parameters,
 			success: function()
 			{
