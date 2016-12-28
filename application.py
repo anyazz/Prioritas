@@ -12,6 +12,8 @@ import os
 # import urllib.request
 from functools import wraps
 import sqlalchemy
+from flask_cors import CORS, cross_origin
+
 
 
 # taken from CS50 Python Library due to issues with importing
@@ -293,6 +295,7 @@ def password():
         return render_template("password.html")
 
 @app.route("/saveTodo")
+@cross_origin()
 def saveTodo():
     """Save user-inputted task to SQL."""
 
@@ -301,6 +304,7 @@ def saveTodo():
     return jsonify(dict());
     
 @app.route("/removeTodo")
+@cross_origin()
 def removeTodo():
     """Delete task from SQL."""
 
