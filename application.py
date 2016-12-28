@@ -12,7 +12,7 @@ import os
 # import urllib.request
 from functools import wraps
 import sqlalchemy
-from flask_cors import CORS, cross_origin
+from flask.ext.cors import CORS, cross_origin
 
 # taken from CS50 Python Library due to issues with importing
 class SQL(object):
@@ -58,7 +58,7 @@ class SQL(object):
 # configure application
 app = Flask(__name__)
 cors = CORS(app)
-app.config["CORS_HEADERS"] = "Content-Type"
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 # ensure responses aren't cached
@@ -296,7 +296,7 @@ def password():
 @cross_origin()
 def saveTodo():
     """Save user-inputted task to SQL."""
-
+    response.headers.add('Access-Control-Allow-Origin', '*')
     # add todo & corresponding data to table
     db.execute("INSERT INTO todos (user_id, todo, category) VALUES (:id, :todo, :category)", id=session["user_id"], todo=request.args.get("todo"), category=request.args.get("category"))
     return jsonify(dict());
@@ -305,7 +305,7 @@ def saveTodo():
 @cross_origin()
 def removeTodo():
     """Delete task from SQL."""
-
+    response.headers.add('Access-Control-Allow-Origin', '*')
     # remove todo & corresponding data from table
     db.execute("DELETE FROM todos WHERE (user_id = :id AND todo = :todo AND category = :category)", id=session["user_id"], todo=request.args.get("todo"), category=request.args.get("category"))
     return jsonify(dict());
