@@ -74,7 +74,7 @@ $("document").ready(function()
 			// call Python saveTodo function; if successful, add to table
 			$.ajax(
 			{
-				url: Flask.url_for("saveTodo"),
+				url: http://prioritas.herokuapp.com/saveTodo,
 				data: parameters,
 				success: function()
 				{
@@ -161,7 +161,7 @@ $("document").ready(function()
 		// call python function to remove from SQL       
 		$.ajax(
 		{
-				url: Flask.url_for("removeTodo"),
+			url: http://prioritas.herokuapp.com/removeTodo,
 			data: parameters,
 			success: function()
 			{
@@ -212,7 +212,7 @@ $("document").ready(function()
 		$.ajax(
 		{
 			async: false,
-				url: Flask.url_for("getTime"),
+			url: http://prioritas.herokuapp.com/getTime,
 			data: parameters,
 			success: function(data)
 			{
@@ -298,7 +298,7 @@ $("document").ready(function()
 		}
 		$.ajax(
 		{
-				url: Flask.url_for("updateTime"),
+				url: http://prioritas.herokuapp.com/updateTime,
 			data: parameters,
 			success: function()
 			{
