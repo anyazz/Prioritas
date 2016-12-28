@@ -11,6 +11,7 @@ const BLACK = "#000000";
 const RED = "#ad544e";
 const DARK_GREY = "#5a4f4e";
 const MAX_DIGIT = 10;
+
 $("document").ready(function()
 {
 	// listen for text from input field 1
@@ -74,7 +75,7 @@ $("document").ready(function()
 			// call Python saveTodo function; if successful, add to table
 			$.ajax(
 			{
-				url: url_for("saveTodo"),
+				url: Flask.url_for("saveTodo"),
 				data: parameters,
 				success: function()
 				{
@@ -161,7 +162,7 @@ $("document").ready(function()
 		// call python function to remove from SQL       
 		$.ajax(
 		{
-			url: url_for("removeTodo"),
+			url: Flask.url_for("removeTodo"),
 			data: parameters,
 			success: function()
 			{
@@ -212,7 +213,7 @@ $("document").ready(function()
 		$.ajax(
 		{
 			async: false,
-			url: url_for("getTime"),
+			url: Flask.url_for("getTime"),
 			data: parameters,
 			success: function(data)
 			{
@@ -298,7 +299,7 @@ $("document").ready(function()
 		}
 		$.ajax(
 		{
-				url: url_for("updateTime"),
+				url: Flask.url_for("updateTime"),
 			data: parameters,
 			success: function()
 			{
