@@ -1,0 +1,107 @@
+I. Introduction
+
+Prioritas is an organizational website that enables users to keep track of to-dos and categorize these tasks to be completed in a 
+priority matrix according to the task’s level of importance and urgency. The website offers a Pomodoro feature in which users are 
+able to optimize task completion by dividing work into manageable sessions and breaks of fixed durations.  
+
+
+II. Executive Summary
+
+The objectives of this project are as follows:
+1. Enable students to coordinate and keep track of tasks to be completed in a comprehensible organizational structure
+2. Optimize the efficiency with which students complete tasks
+
+
+III. About Me (Background)
+
+The Prioritas priority matrix is structured as an organizational grid with four sections- important and urgent, important but not 
+urgent, urgent but not important, and not urgent and not important. Users can input personal to-dos in each section according to the 
+task’s importance and urgency.  
+
+The Prioritas website also includes a Pomodoro feature in which users can chunk work into timed work sessions. Each Pomodoro is a 
+25-minute work session. For efficiency, we made each Pomodoro 10 seconds instead of 25 minutes for demonstration purposes so that it 
+would be easier for graders and CS50 fair participants to more quickly see how the feature works. 
+
+If a user is attempting to complete a task on the list, the user can enter the amount of Pomodoros (s)he estimates the entire task 
+will require to complete.
+
+
+IV. Distribution
+
+In order to access the website and relevant pages, please follow the steps outlined below.
+    Execute:    
+        Login to CS50 IDE
+        In a terminal window, execute:
+	    cd ~/workspace/projectv2/
+        flask run
+    Select CS50 IDE > Web Server to view the project.
+
+(Optional) To see changes to MySQL where data is saved, please follow the steps outlined below in a separate terminal window:
+    Execute:    
+        cd ~/workspace/projectv2/
+        phpliteadmin projectv2.db
+    Click on the link provided by the output. 
+
+
+V. Register
+
+In order to use Prioritas, please register a valid email as a username with an 8-character password. Re-enter your password to 
+ensure you typed the correct password. 
+
+The form will validate the field inputs as you move along and will not allow you to submit until each field is correctly filled. 
+Although the website checks if an email is valid by checking if the input contains an “@” sign, please ensure you enter a valid 
+email address, as an email will be sent with a temporary password to this address if you forget your password.
+If your registration is successful, the website will redirect you to a success page that contains a link for login. Follow the link 
+to register with your new account information. 
+
+
+If your registration is unsuccessful because your email has already been registered, the website will let you know the email is 
+already taken and include a link to register with a different email address. If you forgot your password for this account, you can 
+click on the “Forgot Password?” link included on the page to get a new password.
+
+
+VI. Login/Forgot Password
+
+Once you have registered with Prioritas, please login with your information to begin using the website. If your email is  not 
+registered or your password is incorrect, you will be alerted and prompted to try to sign in again.
+
+If you forgot your password, you can click on the link for “Forgot Password?” which will redirect you to a page in which you can 
+submit your email address for a temporary password. If successful, you will be redirected to a success page that will contain a 
+link to the login page. The new password should be sent to your account in a few minutes if your email is on file. If the password 
+is not sent, you can try again by clicking the “Try Again” link or click on the “Contact Us” link provided to email us for 
+tech support.
+
+If the password reset is unsuccessful, you will be redirected to a failure page. If your email is not registered, you can click on 
+the link contained on the page to register this email.
+
+
+VII. Change Password
+
+Once you have logged in, you have the ability to change your password. If you want to change your password, you can click on the 
+tab labeled “Change Password” at the top right corner. You will be prompted to enter your old password and new password. Like 
+Register, the form will validate the values you input as you go along. 
+
+
+VIII. Priority Matrix
+
+When you login, you will immediately be directed your account’s priority matrix. You can input your to-dos for each section by 
+clicking on the field box containing the placeholder “Enter To-Do…” and pressing enter. You can subsequently remove to-dos from the 
+list, such as when you complete the task, by clicking on the “x” icon. All changes are automatically saved to MySQL. 
+
+
+IX. Pomodoros
+
+You can activate the Pomodoro feature for a task by clicking on the task on wish you choose to work. When you click on the task, a 
+pop-up window modul will appear containing a timer set to 10 seconds (instead of the usual 25 for demonstration convenience). There 
+will also be an input box at the bottom of the pop-up in which you can input the number of Pomodoros you feel is appropriate for the 
+task at hand and press enter. Then press “Start” to begin the Pomodoro, but press “Stop” if you wish to stop the timer and “Reset” 
+if you wish to reset the timer.  Upon completion of the timer, a pleasant alarm will sound and the number of Pomodoros remaining for 
+the task will decrease automatically.
+
+Note: If you are experiencing issues with multiple overlapping time displays, please refresh the page.
+
+
+
+X. Project Details
+ 
+Please see the Design Report for technical details. If any other issues arise, please contact us at prioritas.CS50@gmail.com. 
