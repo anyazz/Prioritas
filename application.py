@@ -14,8 +14,6 @@ from functools import wraps
 import sqlalchemy
 from flask_cors import CORS, cross_origin
 
-
-
 # taken from CS50 Python Library due to issues with importing
 class SQL(object):
     """TODO"""
@@ -57,11 +55,11 @@ class SQL(object):
         except Exception as e:
             raise RuntimeError(e)
 
-
-
-
 # configure application
 app = Flask(__name__)
+cors = CORS(app)
+app.config["CORS_HEADERS"] = "Content-Type"
+
 
 # ensure responses aren't cached
 if app.config["DEBUG"]:
