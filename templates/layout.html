@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        
+        <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta -->
+        <meta charset="utf-8"/>
+        <meta content="initial-scale=1, width=device-width" name="viewport"/>
+
+        <!-- documentation at http://getbootstrap.com/, alternative themes at https://www.bootstrapcdn.com/bootswatch/ -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/yeti/bootstrap.min.css" rel="stylesheet"/>
+
+        <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet"/>
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
+        
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
+        <script type="text/javascript" src="static/TimeCircles.js"></script>
+        <link href="static/TimeCircles.css" rel="stylesheet">
+        <link href="static/TCexample.css" rel="stylesheet">
+
+        <link rel='shortcut icon' type='image/x-icon' href='templates/favicon.ico' />
+        
+        <title class="title">
+            Prioritas {% block title %}{% endblock %}
+        </title>
+
+        
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbar">
+                        {% if session.user_id %}
+
+                            <ul class="nav navbar-nav">
+                                <li><a href="{{ url_for('about') }}">About Me</a></li>
+                                <li><a href="{{ url_for('password')}}">Change Password</a></li>
+                                <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                                <li style="margin-top: -8px"><a href="{{ url_for('index') }}"><img src="https://i.imgsafe.org/914b1905d8.png" style="height: 35px"/></a></li>
+                            </ul>
+                        {% else %}
+                            <ul class="nav navbar-nav">
+                                <li><a href="{{ url_for('about') }}">About Me</a></li>
+                                <li><a href="{{ url_for('register') }}">Register</a></li>
+                                <li><a href="{{ url_for('logout') }}">Log In</a></li>
+                                <li style="margin-top: -8px"><a href="{{ url_for('index') }}"><img src="https://i.imgsafe.org/914b1905d8.png" style="height: 35px"/></a></li>
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+            
+            <a href="{{ url_for('index') }}">
+                <div class="box banner">Pri<img src="https://i.imgsafe.org/914b1905d8.png" style="height: 175px"/>ritas</div> 
+            </a>
+            
+            {% if get_flashed_messages() %}
+                <header>
+                    <div class="alert alert-info" role="alert">
+                        {{ get_flashed_messages() | join(" ") }}
+                    </div>
+                </header>
+            {% endif %}
+
+            <main id="main-html">
+                {% block main %}{% endblock %}
+            </main>
+            <script type="text/javascript" src="static/scripts.js"></script>
+
+        </div>
+
+    </body>
+
+</html>

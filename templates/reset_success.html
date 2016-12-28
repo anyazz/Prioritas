@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Reset Sucessful
+{% endblock %}
+
+{% block main %}
+<div class = "form-background">
+    <p>
+        <tr>
+            <td style="background-color: #df8867; height: 150%; border: 6px solid white">
+        <div class="reset">
+             <strong>Success!</strong> An email containing your temporary password should arrive within a few minutes.
+                 <br>If you do not receive an email, please <a href="forgot_pass" style="color: #8c3731; font-weight: bold">try again</a> or 
+                     <a href="mailto:prioritas.cs50@gmail.com?Subject=Tech Support" style="color: #8c3731; font-weight: bold">contact us</a>.</br>
+                 <br>Login with your new password <a href="login" style="color: #8c3731; font-weight: bold">here</a>.</br>
+        </div>
+        </tr>
+    </p>
+</div>
+{% endblock %}

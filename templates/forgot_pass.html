@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Forgot Password
+{% endblock %}
+
+{% block main %}
+<div class="form-background">
+        
+    <form action=/forgot_pass class="main-form" data-toggle="validator" id="forgot_pass" method="post">
+        <fieldset>
+            <p>
+        <div class="title" style="left:0">Reset Password</div> <br>
+                Please enter your registered email.
+            </p>
+            <div class="form-group">
+                <label for="username" class="control-label"/>
+                <input autocomplete="off" autofocus class="form-control" id="username" name="username" placeholder="Email" style="width: 100%; position: absolute; left: 0" type="email"/>
+                <div class="help-block with-errors"></div>
+            </div>
+            <br>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Submit</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

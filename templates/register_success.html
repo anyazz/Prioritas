@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register Sucessful
+{% endblock %}
+
+{% block main %}
+<div class = "form-background">
+    <p>
+        <tr>
+            <td style="background-color: #df8867; height: 150%; border: 6px solid white">
+        <div class="register_success">
+             <strong>Success!</strong> Please click <a href="{{ url_for('index') }}" class="alert-link" style="color: #8c3731; font-weight: bold">here</a> to access your homepage. 
+        </div>
+        </tr>
+    </p>
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+Our project was implemented through a combination of Python, SQL, Javascript, 
+HTML, and CSS. We used SQL to store user info and todos in two tables and 
+updated them with Python requests. The front end is made up of several HTML 
+pages, most of which are for simple login-related items. Our site was 
+originally based on CS50 Finance, so we used Bootstrap and designed our Login, 
+Register, and Change Password pages in a similar manner to Pset 7. These are 
+all pretty straightforward HTML pages, but we decided to check the inputs 
+dynamically using a combination of Bootstrap and Javascript. (?) In addition, 
+we chose to add a “forgot password” feature, which uses Python to email the 
+user a randomized new password which they can change later.
+ 
+Stackoverflow and Google in general were incredible resources throughout the 
+project, but we consulted so many sources that citing them all would’ve 
+probably taken up more space than the code itself. Still, we tried to give 
+credit to the pages without which we could not have proceeded forward.
+
+
+The bulk of the Javascript goes into animating index.html, which contains all 
+of the user’s tasks separated into four categories as described in the 
+documentation. Index.html consists of a simple table of 4 cells, with each cell 
+containing a form box for input and a list of tasks. In scripts.js, we attach 
+an addEventListener to each input box, checking for the “enter” key being 
+pressed. If so, the saveTodo function checks to make sure the input isn’t an 
+empty string, then passes it via an ajax request to the similarly named Python 
+function, which saves it to the SQL todos table with the corresponding user and 
+categorical information. Upon success, the input is added to the user’s todo 
+list via the addTodo function, which modifies index.HTML and inserts a list 
+element into the proper cell of the table. We debated initially about allowing 
+the user to make all task additions/removals on the front-end only and adding a 
+save button to update everything at the same time. However, we eventually chose 
+to update the database with each change instead at the risk of slowing things 
+down a little in order to make the user experience more seamless.
+
+
+In the next function, we implement a clickTodo function, which detects when any 
+part of a list is clicked. If so, it checks to see if the target of the click 
+was the delete button next to a task, in which case it deletes the 
+corresponding list element; otherwise, it opens the corresponding task manager. 
+This appears to be the most efficient way to account for the two functions. If 
+the delete button was clicked, we again call the corresponding Python function 
+to remove the todo from the SQL database and, upon success, remove it from the 
+list by simply removing the delete button’s parent element from the HTML. 
+
+
+Otherwise, we prepare to open the modal for the task. We started out by 
+hard-coding the modal into the html, but ended up choosing to generate it 
+dynamically so that we could close it properly and reduce the amount of memory 
+needed. We thus dynamically insert all of the HTML for the modal into a div 
+element in index.html, and skipping over the ajax request for now, display it. 
+We then attach a listener to the Pomodoros input field. If the user enters a 
+non-blank value, the updateTodo function updates the number of Pomodoros for 
+that task in the SQL table via another ajax request. Upon success, the number 
+briefly flashes green (controlled by a setTimeout) to let the user know that 
+their input has been saved. The original ajax request at line 221 loads this 
+saved value from the SQL database upon opening. We then add another listener 
+event to check when the modal’s close button is pressed. Next, we write a 
+function to check every .5 seconds if the previous timer has run to completion 
+before updating the number of remaining Pomodoros both onscreen and in the SQL 
+table. Finally, we configure the timer using the timer function, provided by 
+TimeCircles with some modifications. Namely, we combine minutes and seconds 
+into a single circle as found in StackOverflow, and take a series of steps 
+after the timer completes, including sounding an alarm and resetting the timer.
