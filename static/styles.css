@@ -1,0 +1,385 @@
+
+.container
+{
+    /* center contents */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+main img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+}
+
+/* Sets width and height of table as auto and gives it padding */
+table {
+    width: auto !important;
+    height: auto !important;
+    padding: 20px;
+}
+
+/* Stylizes table elements */
+td
+{
+    /* centers tables' cells */
+    text-align: center;
+    
+    /* font formatting */
+    font-family: 'bebasregular';
+    letter-spacing: .5px;
+    word-spacing: 3px;
+    
+    width: 39%;
+    vertical-align: top;
+}
+
+.border { border: 6px solid white; }
+
+/* Stylizes table headers */
+th
+{
+    /* centers tables' cells */
+    text-align: center;
+    
+    /* font formatting */
+    font-family: 'bebasregular';
+    letter-spacing: .5px;
+    word-spacing: 2px;
+    font-size: 25pt;
+    color: white;
+    padding: 4px;
+    
+    height: 20px;
+}
+
+/* Rotates the right table header text sideways */
+.rotate {
+    transform: rotate(90deg);
+}
+
+/*Contain "delete" button within field */
+.flexContainer {
+   display: flex;
+
+}
+.inputField {
+    flex: 1;
+}
+
+/*.save*/
+/*{*/
+/*    position: absolute;*/
+/*    top:80%;*/
+/*    left:57%;*/
+/*}*/
+
+/* Sets the location of the to-do grid */
+.myTableStyle
+{
+    position: fixed;
+    top:14%;
+    left:36%;
+    z-index: 200;
+}
+
+.title {
+    font-family: 'bebasregular';
+    width: 100%;
+    font-style: center;
+    font-size: 350%;
+}
+
+.forgot_pass
+{
+    position: absolute;
+    top:20%;
+    left:50%;
+    vertical-align: middle
+}
+
+.incorrect_pass
+{
+    position: absolute;
+    top:10%;
+    left:34%;
+    vertical-align: middle
+}
+
+.reset
+{
+    position: absolute;
+    top:36%;
+    left:36%;
+    vertical-align: middle
+}
+
+.form-background
+{
+    position: fixed;
+    top: 15%;
+    left: 0%;
+    z-index:-999;
+    background-color: #867776;
+    height: 70vh;
+    border: 20px solid white;
+    border-left: none;
+    border-right: none;
+    width: 100vw;
+}
+
+.main-form
+{
+    background-color: transparent;
+    position: absolute;
+    top: 50%; left: 55%;
+    transform: translate(-50%,-50%);
+    width: 25vw;
+}
+
+
+/* Adjusts the position and design of the title banner */
+.banner
+{
+    
+    text-align: center;
+    
+    /* font formatting */
+    font-family: 'bebasregular';
+    letter-spacing: .5px;
+    font-size: 800%;
+    color: white;
+    line-height: 200px;
+}
+
+.box {
+    position: fixed;
+    top: 35%;
+    min-width: 100vh;
+    right: 55%;
+    background-color: #8c3731;
+    min-height: 15vw;
+    transform: rotate(-90deg);
+    z-index: 100;
+    
+}
+
+/* Changes site background and default text color */
+body {
+    background-color: #5a4f4e;
+    color: white;
+    margin: 0; padding: 0; border: 0; outline: 0;
+    height: 100%;
+    width: 100%;
+    overflow:auto;
+}
+
+/* Uploads Bebas font */
+@font-face {
+    font-family: 'bebasregular';
+    src: url('BEBAS___-webfont.eot');
+    src: url('BEBAS___-webfont.eot?#iefix') format('embedded-opentype'),
+         url('BEBAS___-webfont.woff') format('woff'),
+         url('BEBAS___-webfont.ttf') format('truetype'),
+         url('BEBAS___-webfont.svg#bebasregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/* To-Do Color and Design */
+.list-group-item {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    font-size: 12pt;
+}
+
+/* To-Do Text Color */
+li.list-group-item {
+    color: white;
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    text-align: center;
+}
+
+li.list-group-item:focus,
+li.list-group-item:hover {
+    /* Set individually because there was weird things where the size of the bar was changing if I just set a border all around */
+    border: none;
+    border-bottom: 2px solid white;
+    background-color: rgba(255, 255, 255, 0.5);
+    color:rgba(50, 50, 50, 0.5);;
+    cursor:pointer;
+}
+
+/* Navbar Text Color */
+.navbar-default .navbar-text {
+  color: #ffffff;
+}
+
+/* Navbar Float and Transparent */
+.navbar-default {
+  background-color: transparent;
+  position: fixed;
+  right: 10%;
+  top:0;
+  z-index: 999;
+}
+
+/* Navbar Active Colors */
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #cc9692;
+  background-color: transparent;
+}
+
+
+.list-group-item button {
+
+    /*display:none;*/
+    position: absolute;
+    left:0;
+
+}
+
+#save-button {
+    position: absolute;
+    bottom: 20px;
+    right: 60px;
+    color: #5a4f4e;
+}
+
+.delete {
+	background-color:transparent;
+	display:inline-block;
+	cursor:pointer;
+	color: white;
+	font-family: Arial;
+	font-size: 15px;
+	text-decoration:none;
+	border: none;
+	margin-left: 5px;
+}
+.delete:hover {
+	color: #5a4f4e;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    max-width: 100%;
+    max-height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    z-index: 500;
+}
+
+/* Modal Content/Box */
+.modal-box {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 2px solid #515151;
+    width: 30vw; /* Could be more or less, depending on screen size */
+    max-width: 100%;
+    height: 40vw;
+    max-height: 100%;
+    position: fixed;
+    left: 45%;
+    top: 10%;
+}
+
+.modal-content{
+    position: relative;
+    top: 50%;
+    left: 50%;
+}
+
+/* The Close Button */
+#modal-close {
+    color: #aaa;
+    position: absolute;
+    left: 90%;
+    font-size: 28px;
+    font-weight: bold;
+    z-index: 600;
+}
+
+#modal-close:hover,
+#modal-close:focus {
+    color: #6bb74b;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-text {
+    color: #515151;
+    font-family: 'bebasregular';
+    text-transform: uppercase;
+    font-size: 200%;
+    position: absolute;
+    text-align: left !important;
+    left: 12%;
+    top: 82%;
+    display:inline;
+}
+
+#time-input {
+    font-family: 'bebasregular';
+    width: 50px;
+    position: absolute;
+    text-align: center;
+    color: #515151;
+    border: 2px solid #515151;
+    display: inline;
+    top: 82.5%;
+    left: 70%;
+}
+
+#modal-task {
+    font-family: 'bebasregular';
+    color: #5a4f4e;
+    padding: 15px;
+    word-spacing: 5px;
+}
+
+#tasks {
+    font-size: 25pt;
+    position: absolute;
+    width: 100%;
+    top: 12%;
+    left: 0;
+    text-align: center;
+}
+
+#time-btns {
+    position: absolute;
+    top: 70%;
+    left: 21%;
+}
+
+#modal-stopwatch {
+    position: relative;
+    top: 17%;
+    left: 12%;
+    height: 75%;
+    width: 75%;
+    font-size: 30px;
+}
+
+.inside {
+    width: 100%;
+}
+
+.has-error .control-label,
+.has-error .help-block,
+.has-error .form-control-feedback {
+    color: #d1cfcf;
+}
+
