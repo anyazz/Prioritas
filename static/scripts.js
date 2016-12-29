@@ -12,10 +12,11 @@ const RED = "#ad544e";
 const DARK_GREY = "#5a4f4e";
 const MAX_DIGIT = 10;
 
+
 $("document").ready(function()
 {
 	// listen for text from input field 1
-	$("#input1").addEventListener('keypress', function(e)
+	$("#input1")[0].addEventListener('keypress', function(e)
 		{
 			var key = e.which || e.keyCode;
 			if (key === ENTER_KEY)
@@ -25,7 +26,7 @@ $("document").ready(function()
 		})
 		
 	// listen for text from input field 2
-	$("#input2").addEventListener('keypress', function(e)
+	$("#input2")[0].addEventListener('keypress', function(e)
 		{
 			var key = e.which || e.keyCode;
 			if (key === ENTER_KEY)
@@ -35,7 +36,7 @@ $("document").ready(function()
 		})
 		
 	// listen for text from input field 3
-	$("#input3").addEventListener('keypress', function(e)
+	$("#input3")[0].addEventListener('keypress', function(e)
 		{
 			var key = e.which || e.keyCode;
 			if (key === ENTER_KEY)
@@ -45,7 +46,7 @@ $("document").ready(function()
 		})
 		
 	// listen for text from input field 4
-	$("#input4").addEventListener('keypress', function(e)
+	$("#input4")[0].addEventListener('keypress', function(e)
 		{
 			var key = e.which || e.keyCode;
 			if (key === ENTER_KEY)
@@ -103,10 +104,10 @@ $("document").ready(function()
 	}
 	
 	// call clickTodo when any list clicked
-	$("#list1").addEventListener('click', clickTodo, false);
-	$("#list2").addEventListener('click', clickTodo, false);
-	$("#list3").addEventListener('click', clickTodo, false);
-	$("#list4").addEventListener('click', clickTodo, false);
+	$("#list1")[0].addEventListener('click', clickTodo, false);
+	$("#list2")[0].addEventListener('click', clickTodo, false);
+	$("#list3")[0].addEventListener('click', clickTodo, false);
+	$("#list4")[0].addEventListener('click', clickTodo, false);
 	
 	// THANK JESUS FOR "T.J." XD adapted from @http://stackoverflow.com/questions/30150347/delete-parent-element-with-javascript
 	function clickTodo(e)
@@ -184,7 +185,7 @@ $("document").ready(function()
 	function showModal(todo, category)
 	{
 		// update task title
-		$("#modal-task").innerHTML = todo;
+		$("#modal-task")[0].innerHTML = todo;
 		
 		// config Timer & load default pomodoro value from SQL
 		var parameters = {
@@ -203,20 +204,20 @@ $("document").ready(function()
 			{
 				var pomodoros = data[0]["pomodoros"];
 				console.log(pomodoros)
-				$("#time-input").value = pomodoros;
+				$("#time-input")[0].value = pomodoros;
 			}
 		});
 		
 		// display modal 
-		$("#modal").style.display = "block";
+		$("#modal")[0].style.display = "block";
 		
 		// update pomodoros from input field
 		// listen for text from input field
-		$("#time-input").addEventListener('keypress', function(
+		$("#time-input")[0].addEventListener('keypress', function(
 				e)
 			{
 				var key = e.which || e.keyCode;
-				var pomodoros = $("#time-input").value;
+				var pomodoros = $("#time-input")[0].value;
 				if (key === ENTER_KEY && pomodoros != '')
 				{
 				    // update
@@ -225,7 +226,7 @@ $("document").ready(function()
                     // flash green
 					function changeColor(color)
 					{
-						$("#time-input").style.color = color;
+						$("#time-input")[0].style.color = color;
 					}
 					changeColor(GREEN);
 					setTimeout(function()
@@ -236,7 +237,7 @@ $("document").ready(function()
 			})
 		
 		// When the user clicks on (x), close the modal & reset timer
-		$("#modal-close").addEventListener('click', function()
+		$("#modal-close")[0].addEventListener('click', function()
 			{
 				$("#modal").hide();
 				$(".main-timer.stopwatch").TimeCircles().reset();
@@ -258,9 +259,9 @@ $("document").ready(function()
 				timerdone = false;
 				
 				// change remaining pomodoros #, recursive call 
-				if ($("#time-input").value > 0)
+				if ($("#time-input")[0].value > 0)
 				{
-					$("#time-input").value -= 1;
+					$("#time-input")[0].value -= 1;
 					updateTime(todo, category, $("#time-input").value)
 					check();
 				}
@@ -301,7 +302,7 @@ $("document").ready(function()
 		var className = ".main-timer.stopwatch"
 		
 		// configure for color/length
-		var div = $("#modal-stopwatch");
+		var div = $("#modal-stopwatch")[0];
 		div.setAttribute("data-timer", duration);
 		
 		// instantiate timecircle JS
