@@ -15,7 +15,7 @@ const MAX_DIGIT = 10;
 $("document").ready(function()
 {
 	// listen for text from input field 1
-	document.getElementById("input1").addEventListener('keypress', function(e)
+	$("#input1").addEventListener('keypress', function(e)
 		{
 			var key = e.which || e.keyCode;
 			if (key === ENTER_KEY)
@@ -25,7 +25,7 @@ $("document").ready(function()
 		})
 		
 	// listen for text from input field 2
-	document.getElementById("input2").addEventListener('keypress', function(e)
+	$("#input2").addEventListener('keypress', function(e)
 		{
 			var key = e.which || e.keyCode;
 			if (key === ENTER_KEY)
@@ -35,7 +35,7 @@ $("document").ready(function()
 		})
 		
 	// listen for text from input field 3
-	document.getElementById("input3").addEventListener('keypress', function(e)
+	$("#input3").addEventListener('keypress', function(e)
 		{
 			var key = e.which || e.keyCode;
 			if (key === ENTER_KEY)
@@ -45,7 +45,7 @@ $("document").ready(function()
 		})
 		
 	// listen for text from input field 4
-	document.getElementById("input4").addEventListener('keypress', function(e)
+	$("#input4").addEventListener('keypress', function(e)
 		{
 			var key = e.which || e.keyCode;
 			if (key === ENTER_KEY)
@@ -103,27 +103,30 @@ $("document").ready(function()
 	}
 	
 	// call clickTodo when any list clicked
-	document.getElementById("list1").addEventListener('click', clickTodo, false);
-	document.getElementById("list2").addEventListener('click', clickTodo, false);
-	document.getElementById("list3").addEventListener('click', clickTodo, false);
-	document.getElementById("list4").addEventListener('click', clickTodo, false);
+	$("#list1").addEventListener('click', clickTodo, false);
+	$("#list2").addEventListener('click', clickTodo, false);
+	$("#list3").addEventListener('click', clickTodo, false);
+	$("#list4").addEventListener('click', clickTodo, false);
 	
 	// THANK JESUS FOR "T.J." XD adapted from @http://stackoverflow.com/questions/30150347/delete-parent-element-with-javascript
 	function clickTodo(e)
 	{
 		var btn = e.target;
 		var buttonclicked = true;
-		var listid = btn.parentNode.parentNode.id
-		var category = listid.slice(-1)
 		
 		// check to see if btn (click target) was text (div) w/ only 1 child node or list item w/ multiple
 		if (btn.childNodes.length == 1)
 		{
 			var todo = btn.parentNode.childNodes[1].innerHTML
+			var listid = btn.parentNode.parentNode.id
+			var listid = btn.parentNode.parentNode.id
+			var category = listid.slice(-1)
 		}
 		else
 		{
 			var todo = btn.childNodes[1].innerHTML
+			var listid = btn.parentNode.id
+			var category = listid.slice(-1)
 		}
 		
 		// start with the element that was the target of the
@@ -181,7 +184,7 @@ $("document").ready(function()
 	function showModal(todo, category)
 	{
 		// update task title
-		document.getElementById("modal-task").innerHTML = todo;
+		$("#modal-task").innerHTML = todo;
 		
 		// config Timer & load default pomodoro value from SQL
 		var parameters = {
@@ -200,20 +203,20 @@ $("document").ready(function()
 			{
 				var pomodoros = data[0]["pomodoros"];
 				console.log(pomodoros)
-				document.getElementById("time-input").value = pomodoros;
+				$("#time-input").value = pomodoros;
 			}
 		});
 		
 		// display modal 
-		document.getElementById('modal').style.display = "block";
+		$("#modal").style.display = "block";
 		
 		// update pomodoros from input field
 		// listen for text from input field
-		document.getElementById("time-input").addEventListener('keypress', function(
+		$("#time-input").addEventListener('keypress', function(
 				e)
 			{
 				var key = e.which || e.keyCode;
-				var pomodoros = document.getElementById("time-input").value;
+				var pomodoros = $("#time-input").value;
 				if (key === ENTER_KEY && pomodoros != '')
 				{
 				    // update
@@ -222,7 +225,7 @@ $("document").ready(function()
                     // flash green
 					function changeColor(color)
 					{
-						document.getElementById("time-input").style.color = color;
+						$("#time-input").style.color = color;
 					}
 					changeColor(GREEN);
 					setTimeout(function()
@@ -233,7 +236,7 @@ $("document").ready(function()
 			})
 		
 		// When the user clicks on (x), close the modal & reset timer
-		document.getElementById("modal-close").addEventListener('click', function()
+		$("#modal-close").addEventListener('click', function()
 			{
 				$("#modal").hide();
 				$(".main-timer.stopwatch").TimeCircles().reset();
@@ -255,10 +258,10 @@ $("document").ready(function()
 				timerdone = false;
 				
 				// change remaining pomodoros #, recursive call 
-				if (document.getElementById("time-input").value > 0)
+				if ($("#time-input").value > 0)
 				{
-					document.getElementById("time-input").value -= 1;
-					updateTime(todo, category, document.getElementById("time-input").value)
+					$("#time-input").value -= 1;
+					updateTime(todo, category, $("#time-input").value)
 					check();
 				}
 			}
@@ -280,13 +283,14 @@ $("document").ready(function()
 		}
 		$.ajax(
 		{
-				url: Flask.url_for("updateTime"),
+			url: Flask.url_for("updateTime"),
 			data: parameters,
 			success: function()
 			{
 				console.log("success")
 			}
 		})
+		event.stopPropagation()
 	}
 	
 	// timer setup
@@ -297,7 +301,7 @@ $("document").ready(function()
 		var className = ".main-timer.stopwatch"
 		
 		// configure for color/length
-		var div = document.getElementById("modal-stopwatch");
+		var div = $("#modal-stopwatch");
 		div.setAttribute("data-timer", duration);
 		
 		// instantiate timecircle JS
@@ -370,12 +374,12 @@ $("document").ready(function()
 			$(".main-timer.stopwatch").TimeCircles().stop()
 			timerdone = true;
 			console.log("timer1 done")
-			document.getElementById("alarm").play();
+			$("#alarm").play();
 		}
 		
 		function breaktimer()
 		{
-			document.getElementById("alarm").play();
+			$("#alarm").play();
 			// $(className).TimeCircles().destroy();
 			// timer(BREAK_SECS, GREEN, true);
 		}
