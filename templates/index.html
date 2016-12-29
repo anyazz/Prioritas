@@ -62,7 +62,27 @@
     </table>
     </div>
 
-
+<div id="modal" class="modal">
+	<div class="modal-box flexContainer">' 
+		<span id="modal-close">x</span>
+		<div id="tasks">
+			<text id="modal-task">Task</text>
+		</div>
+		<div class="inside">
+			<div id="modal-stopwatch" class = "main-timer stopwatch"></div>
+			<div id="time-btns">
+				<button class="btn time-btn start" style="background-color: #7f5e5b">Start</button>
+				<button class="btn time-btn stop" style="background-color: #ad544e; margin-left: 5px; margin-right: 5px">Stop</button>
+				<button class="btn time-btn reset-btn" style="background-color: #cc9692">Reset</button>
+			</div>
+			<text class="modal-text">
+				<img src="https://i.imgsafe.org/914b1905d8.png" style="height: 35px; margin-right: 7px"/>
+				Pomodoros: 
+			</text>
+			<input class="form-control" type="text" placeholder="#" id="time-input" type="number">
+		</div>
+	</div>
+	
 <audio id="alarm" type="audio/mpeg" src="static/alarm.mp3"></audio>
 
 
