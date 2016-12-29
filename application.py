@@ -17,6 +17,17 @@ from functools import wraps
 import sqlalchemy
 import psycopg2
 
+urlparse.uses_netloc.append("postgres")
+url = urlparse.urlparse(os.environ["DATABASE_URL"])
+
+conn = psycopg2.connect(
+    database=url.path[1:],
+    user=url.username,
+    password=url.password,
+    host=url.hostname,
+    port=url.port
+)
+
 # taken from CS50 Python Library due to issues with importing
 class SQL(object):
     """TODO"""
@@ -83,16 +94,7 @@ Session(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/Anya'
 db = SQLAlchemy(app)
 
-urlparse.uses_netloc.append("postgres")
-url = urlparse.urlparse(os.environ["DATABASE_URL"])
 
-conn = psycopg2.connect(
-    database=url.path[1:],
-    user=url.username,
-    password=url.password,
-    host=url.hostname,
-    port=url.port
-)
 
 def login_required(f):
     """
