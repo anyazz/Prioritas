@@ -11,7 +11,6 @@ import string
 import smtplib
 import csv
 import os
-import urlparse
 # import urllib.request
 from functools import wraps
 import sqlalchemy
@@ -78,20 +77,9 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # configure CS50 Library to use SQLite database
-db = SQL("postgresql://localhost/Anya")
+# db = SQL("postgresql://localhost/Anya")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/Anya'
-# db = SQLAlchemy(app)
-
-urlparse.uses_netloc.append("postgres")
-url = urlparse.urlparse(os.environ["DATABASE_URL"])
-
-conn = psycopg2.connect(
-    database=url.path[1:],
-    user=url.username,
-    password=url.password,
-    host=url.hostname,
-    port=url.port
-)
+db = SQLAlchemy(app)
 
 def login_required(f):
     """
