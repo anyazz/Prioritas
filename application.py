@@ -90,9 +90,9 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # configure CS50 Library to use SQLite database
-# db = SQL("postgresql://localhost/Anya")
+db = SQL("postgresql://localhost/Anya")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/Anya'
-db = SQLAlchemy(app)
+# db = SQLAlchemy(app)
 
 
 
