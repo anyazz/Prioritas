@@ -15,6 +15,7 @@ import urlparse
 # import urllib.request
 from functools import wraps
 import sqlalchemy
+import psycopg2
 
 # taken from CS50 Python Library due to issues with importing
 class SQL(object):
