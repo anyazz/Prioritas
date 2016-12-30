@@ -80,7 +80,7 @@ th
 {
     position: fixed;
     top:14%;
-    left:36%;
+    left:32%;
     z-index: 200;
 }
 
@@ -123,7 +123,7 @@ th
     z-index:-999;
     background-color: #867776;
     height: 70vh;
-    border: 20px solid white;
+    border: 6px solid white;
     border-left: none;
     border-right: none;
     width: 100vw;
@@ -142,24 +142,24 @@ th
 /* Adjusts the position and design of the title banner */
 .banner
 {
-    
+    position:relative;
     text-align: center;
     
     /* font formatting */
     font-family: 'bebasregular';
     letter-spacing: .5px;
-    font-size: 800%;
+    font-size: 10vw;
     color: white;
-    line-height: 200px;
+    line-height: 180px;
 }
 
 .box {
     position: fixed;
-    top: 35%;
-    min-width: 100vh;
-    right: 55%;
+	top: 34%;
+	left: -20vw;
+    width: 150vh;
     background-color: #8c3731;
-    min-height: 15vw;
+    height: 15vw;
     transform: rotate(-90deg);
     z-index: 100;
     
