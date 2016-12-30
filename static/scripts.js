@@ -394,12 +394,12 @@ $("document").ready(function()
 			$(".main-timer.stopwatch").TimeCircles().stop()
 			timerdone = true;
 			console.log("timer1 done")
-			$("#alarm").play();
+			$("#alarm")[0].play();
 		}
 		
 		function breaktimer()
 		{
-			$("#alarm").play();
+			$("#alarm")[0].play();
 			// $(className).TimeCircles().destroy();
 			// timer(BREAK_SECS, GREEN, true);
 		}
