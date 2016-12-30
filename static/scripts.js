@@ -258,7 +258,7 @@ $("document").ready(function()
 		// When the user clicks on (x), close the modal & reset timer
 		$("#modal-close")[0].addEventListener('click', function()
 			{
-				$("#modal").hide();
+				$("#modal").remove();
 				$(".main-timer.stopwatch").TimeCircles().reset();
 				$(".main-timer.stopwatch").TimeCircles().destroy();
 			})
