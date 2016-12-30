@@ -3,22 +3,232 @@
 {% block title %}
     About Me
 {% endblock %}
-
 {% block main %}
-<div class = "form-background">
-    <div class="main-form" style="left: 55%">
-    <div class="title">About Me</div> <br>
-        <text class = "scrollabletextbox">
-            Prioritas is an organizational website that enables users to keep track of to-dos and categorize 
-            these tasks to be completed in a priority matrix according to their level of importance and urgency. 
-            The website offers a Pomodoro feature through which users are able to optimize task completion by dividing work 
-            into manageable chunks of 25 minutes. 
-            Happy Prioritas-ing!
-        </text><br><br>
-        <text>Built by Anya Zhang '20, Linda Qin '20, and Lena Episalla '19 for CS50. Questions? Comments? Please contact
-        us at prioritas.CS50@gmail.com.</text>
 
-    </div>
+<!-- adapted from FullPage.js by Alvaro Trigo - http://alvarotrigo.com/fullPage/ -->
+
+	<link rel="stylesheet" type="text/css" href="../static/fullPage-js/jquery.fullPage.css" />
+	<link rel="stylesheet" type="text/css" href="../static/fullPage-js/examples.css" />
+	<style>
+/*
+
+	#about-background{
+		position: fixed;
+		top: 15%;
+		left: 0%;
+		z-index:-999;
+		background-color: #867776;
+		border: 6px solid white;
+		border-left: none;
+		border-right: none;
+		width: 100vw;
+	}
+*/
+	#about-text{
+		text-align: justify;
+		font-size: 20px;
+		color: #afafaf
+	}
+		
+	#fullpage{
+		top:-50px;
+		width: 75%;
+		margin-left: 250px;
+	}
+		
+	/* Style for our header texts
+	* --------------------------------------- */
+	h1{
+		font-size: 5em;
+		font-family: arial,helvetica;
+		color: #fff;
+		margin:0;
+	}
+		
+	h2{	
+		font-size: 4em;
+		font-family: arial,helvetica;
+		color: #fff;
+		margin:0;
+	}
+
+	
+	p {		
+/*		text-align: justify;*/
+		font-size: 16px;
+		color: #afafaf;
+	}
+	
+	
+	.slide-text {
+		width:70%;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top:10px;
+	}
+		
+	/* Centered texts in each section
+	* --------------------------------------- */
+	.section{
+		text-align:center;
+
+	}
+	#section0{
+		height: 300px;	
+		width: 80%;
+		margin-left: 100px;
+	}
+	#section1{
+	}
+	
+/*
+	#section2{
+		width: 75%;
+		margin-left: 250px;
+	}
+*/
+
+	/* Overwriting styles for the navigation dots (to place it where we want)
+	* --------------------------------------- */
+	.fp-slidesNav.bottom{
+		bottom: 15px;
+	}
+
+	/* Bottom menu
+	* --------------------------------------- */
+	#infoMenu li a {
+		color: #fff;
+	}
+
+/*
+	#section2 h1{
+		color: #333;
+	}
+*/
+	.slide {
+		text-align: center;
+	}
+		
+
+	</style>
+
+	<!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+	<script type="text/javascript" src="static/fullPage-js/jquery.slimscroll.min.js"></script>
+
+	<script type="text/javascript" src="static/fullPage-js/jquery.fullPage.min.js"></script>
+	<script type="text/javascript" src="static/fullPage-js/examples.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#fullpage').fullpage({
+				anchors: ['firstPage', 'secondPage', '3rdPage'],
+				slidesNavigation: true
+			});
+		});
+
+	</script>
+<script>
+	! function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0],
+			p = /^http:/.test(d.location) ? 'http' : 'https';
+		if (!d.getElementById(id)) {
+			js = d.createElement(s);
+			js.id = id;
+			js.src = p + '://platform.twitter.com/widgets.js';
+			fjs.parentNode.insertBefore(js, fjs);
+		}
+	}(document, 'script', 'twitter-wjs');
+	
+	$("#step1-png").onclick(function(){
+        // fade out then remove existing image
+        $("#imageContainer > img")
+        .first().fadeOut(
+          function(){$(this).remove();}
+        );
+        
+        // create and fade in new image
+        $("#imageContainer").append(
+          $("<img>").attr('src', "static/Step1.5.png")
+          .fadeIn()
+        );
+        
+      }
+    );
+</script>
+
+
+<div id="about-background">
+<div id="fullpage">
+	<div class="section" id="section0">
+		<div class="intro">
+    		<div class="title">Get Your Prioritas Straight.</div> <br>
+			<text id = "about-text">
+				Prioritas is an organizational website designed to help users categorize and break up large projects into manageable chunks. 
+				Scroll down to learn how to use Prioritas and the Pomodoro technique, or click above to register or log in!
+				<br><br>
+				Built by Anya Zhang '20, Linda Qin '20, and Lena Episalla '19 for CS50 and since migrated to Heroku. Questions? Comments? Bugs? Please contact us at <a href="mailto:prioritas.CS50@gmail.com">prioritas.CS50@gmail.com</a>.
+			</text>		
+		</div>
+	</div>
+	<div class="section" id="section1">
+	    <div class="slide" id="slide1" data-anchor="slide1">
+				<h1>Using Prioritas</h1>
+				<p class="slide-text">On the main page, Prioritas features a priority matrix for keeping track of to-dos according to their level of importance and urgency. Upon clicking on a task, an action window based on the Pomodoro technique pops up, featuring a timer and a field to input the number of desired work cycles to be completed. 
+				</p>
+				<img src="../static/index.png" width="520px" height="319px">
+		</div>
+		
+		<div class="slide" id="slide2" data-anchor="slide2">
+			<h2>Step 1</h2>
+			<p class="slide-text">Add tasks to the grid by typing in the appropriate text field and hitting enter. Top Left: Important things you should do right away; Bottom Left: things you want to get to at some point; Top Right: pressing but trivial tasks; Bottom right: time-wasting, avoidable things.</p>
+		  <div id="imageContainer">
+				<img id="step1-png" src="../static/Step1.png" width="600px" height="405px">
+			</div>
+		</div>
+
+	    <div class="slide" id="slide3" data-anchor="slide3">
+			<h2>Step 2</h2>
+			<p class="slide-text">Click on a task to see the Pomodoro pop-up window. At the bottom, you'll see a field with the number of Pomodoros to complete for the task. Type in the number of Pomodoros you'd like to spend working on each long-term project.</p>
+			<img src="../static/Step2.png" width="520px" height="351px">
+
+		</div>
+
+		<div class="slide" id="slide4" data-anchor="slide4">
+			<h2>Step 3 </h2>
+			<p class="slide-text"> Time to begin work! Click on a task, hit the start button, and begin working for 25 minutes without pause. A bell will notify you when time is up and your 5-minute break begins. Another bell will sound when your break is over, and the number of remaining Pomodoros will automatically decrease.</p>
+			<img src="../static/Step3.png" width="520px" height="351px">
+		</div>
+		f
+		<div class="slide" id="slide5" data-anchor="slide5">
+			<h2>Step 4 </h2>
+			<p class="slide-text"> Hooray, you've completed a task! Simply click the delete button to remove it from your list. </p>
+			<img src="../static/Step4.png" width="520px" height="351px">
+		</div>
+
+	</div>
+	
+	<div class="section" id="section2">
+		<div class="intro">
+				<h1>The Pomodoro Technique</h1>
+				<p>
+					You can even click on the navigation and jump directly to another section.
+				</p>		
+		</div>
+	</div>
+	
+	<div class="section" id="section3">
+		<div class="intro">
+			<div class="title">Happy   Prioritas-ing!</div>
+		</div>
+	</div>
+</div>
 </div>
 {% endblock %}
-

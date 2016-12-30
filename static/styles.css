@@ -89,6 +89,7 @@ th
     width: 100%;
     font-style: center;
     font-size: 350%;
+	color:#ffffff;
 }
 
 .forgot_pass
@@ -233,6 +234,13 @@ li.list-group-item:hover {
 .navbar-default .navbar-nav > li > a:focus {
   color: #cc9692;
   background-color: transparent;
+}
+
+a {
+	color:#ffffff
+}
+a:hover{
+	color: #7e0505
 }
 
 

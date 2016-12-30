@@ -2,8 +2,8 @@
 const ENTER_KEY = 13;
 const FLASH_MS = 400;
 const CHECK_MS = 500;
-const TIMER_SECS = 11;
-const BREAK_SECS=5;
+const TIMER_SECS = 1501;
+const BREAK_SECS=301;
 const SECS_PER_MIN = 60;
 const DONE_MS = 1000;
 const GREEN = "#518e37";

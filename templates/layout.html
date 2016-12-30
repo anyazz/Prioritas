@@ -65,7 +65,7 @@
                                 <li><a href="{{ url_for('about') }}">About Me</a></li>
                                 <li><a href="{{ url_for('register') }}">Register</a></li>
                                 <li><a href="{{ url_for('logout') }}">Log In</a></li>
-                                <li style="margin-top: -8px"><a href="{{ url_for('index') }}"><img src="static/pomodoro.gif" style="height: 35px"/></a></li>
+                                <li style="margin-top: -8px"><a href="{{ url_for('index') }}"><img src="static/pomodoro.png" style="height: 35px"/></a></li>
                             </ul>
                         {% endif %}
                     </div>
@@ -73,9 +73,9 @@
             </nav>
             
             <a href="{{ url_for('index') }}">
-                <div class="box banner">Pri<img src="https://i.imgsafe.org/914b1905d8.png" style="height: 175px"/>ritas</div> 
+                <div class="box banner">Pri<img src="static/pomodoro.png" style="height: 175px"/>ritas</div> 
             </a>
-            
+			
             {% if get_flashed_messages() %}
                 <header>
                     <div class="alert alert-info" role="alert">
