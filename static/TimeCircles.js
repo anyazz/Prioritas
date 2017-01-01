@@ -726,18 +726,7 @@
     
     // New reset function
 
-    TC_Instance.prototype.reset = function() {
 
-        // Stop running
-        this.data.paused = true;
-        
-        
-        // Reset
-        var attr_data_timer = $(this.element).data('timer');
-        this.data.timer = attr_data_timer;
-        this.data.attributes.ref_date = (new Date()).getTime() + (attr_data_timer * 1000);
-        
-    };
 
     TC_Instance.prototype.stop = function() {
         if (typeof this.data.timer === "number") {
@@ -747,7 +736,22 @@
         this.data.paused = true;
         // useWindow.cancelAnimationFrame(this.data.animation_frame);
     };
-
+    
+//	TC_Instance.prototype.reset = function() {
+//
+////        // Stop running
+////        this.data.paused = true;
+////        
+////        
+////        // Reset
+////        var attr_data_timer = $(this.element).data('timer');
+////        this.data.timer = attr_data_timer;
+////        this.data.attributes.ref_date = (new Date()).getTime() + (attr_data_timer * 1000);
+//		TC_Instance.prototype.restart;
+//		TC_Instance.prototype.stop;
+//        
+//    };
+	
     TC_Instance.prototype.destroy = function() {
         this.clearListeners();
         this.stop();

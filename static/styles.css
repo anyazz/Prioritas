@@ -366,19 +366,10 @@ a:hover{
     text-align: center;
 }
 
-#time-btns {
+.time-btns {
     position: absolute;
     top: 70%;
     left: 21%;
-}
-
-#modal-stopwatch {
-    position: relative;
-    top: 17%;
-    left: 12%;
-    height: 75%;
-    width: 75%;
-    font-size: 30px;
 }
 
 .inside {
@@ -390,4 +381,5 @@ a:hover{
 .has-error .form-control-feedback {
     color: #d1cfcf;
 }
+
 

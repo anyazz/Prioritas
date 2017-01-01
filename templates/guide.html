@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    About Me
+    User Guide
 {% endblock %}
 {% block main %}
 
@@ -24,7 +24,7 @@
 		width: 100vw;
 	}
 */
-	#about-text{
+	.section-text{
 		text-align: justify;
 		font-size: 20px;
 		color: #afafaf
@@ -46,7 +46,7 @@
 	}
 		
 	h2{	
-		font-size: 4em;
+		font-size: 3.5em;
 		font-family: arial,helvetica;
 		color: #fff;
 		margin:0;
@@ -65,6 +65,8 @@
 		margin-left: auto;
 		margin-right: auto;
 		margin-top:10px;
+		align-self: justify;
+
 	}
 		
 	/* Centered texts in each section
@@ -75,18 +77,17 @@
 	}
 	#section0{
 		height: 300px;	
-		width: 80%;
+		width: 85%;
 		margin-left: 100px;
 	}
 	#section1{
 	}
 	
-/*
 	#section2{
-		width: 75%;
-		margin-left: 250px;
+		width: 80%;
+		margin-left: 100px;
+
 	}
-*/
 
 	/* Overwriting styles for the navigation dots (to place it where we want)
 	* --------------------------------------- */
@@ -121,21 +122,34 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
-	<script type="text/javascript" src="static/fullPage-js/jquery.slimscroll.min.js"></script>
+	<script type="text/javascript" src="../static/fullPage-js/jquery.slimscroll.min.js"></script>
 
-	<script type="text/javascript" src="static/fullPage-js/jquery.fullPage.min.js"></script>
-	<script type="text/javascript" src="static/fullPage-js/examples.js"></script>
+	<script type="text/javascript" src="../static/fullPage-js/jquery.fullPage.min.js"></script>
+	<script type="text/javascript" src="../static/fullPage-js/examples.js"></script>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#fullpage').fullpage({
-				anchors: ['firstPage', 'secondPage', '3rdPage'],
-				slidesNavigation: true
+				anchors: ['1stPage', '2ndPage', '3rdPage', '4thPage'],
+				slidesNavigation: true,
+				onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){
+					if(slideIndex == 1 && nextSlideIndex == 2 && $("#step1img")[0].src.split("/").pop()=="Step1.png")
+					{
+						$("#step1img")[0].src="static/Step1.5.png";
+						return false;
+					}
+					if(slideIndex == 1 && nextSlideIndex == 0 && $("#step1img")[0].src.split("/").pop()=="Step1.5.png")
+					{
+						$("#step1img")[0].src="static/Step1.png";
+						return false;
+					}
+				}
 			});
 		});
-
 	</script>
+<script type="text/javascript" src="../static/fullpage.js"></script>
 <script>
+					  
 	! function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0],
 			p = /^http:/.test(d.location) ? 'http' : 'https';
@@ -147,84 +161,82 @@
 		}
 	}(document, 'script', 'twitter-wjs');
 	
-	$("#step1-png").onclick(function(){
-        // fade out then remove existing image
-        $("#imageContainer > img")
-        .first().fadeOut(
-          function(){$(this).remove();}
-        );
-        
-        // create and fade in new image
-        $("#imageContainer").append(
-          $("<img>").attr('src', "static/Step1.5.png")
-          .fadeIn()
-        );
-        
-      }
-    );
+
+
+
 </script>
 
 
 <div id="about-background">
 <div id="fullpage">
-	<div class="section" id="section0">
+	<div class="section text-section" id="section0">
 		<div class="intro">
     		<div class="title">Get Your Prioritas Straight.</div> <br>
-			<text id = "about-text">
+			<div class = "section-text"><text>
 				Prioritas is an organizational website designed to help users categorize and break up large projects into manageable chunks. 
 				Scroll down to learn how to use Prioritas and the Pomodoro technique, or click above to register or log in!
 				<br><br>
-				Built by Anya Zhang '20, Linda Qin '20, and Lena Episalla '19 for CS50 and since migrated to Heroku. Questions? Comments? Bugs? Please contact us at <a href="mailto:prioritas.CS50@gmail.com">prioritas.CS50@gmail.com</a>.
-			</text>		
+				Questions? Comments? Bugs? Please contact us at <a href="mailto:prioritas.CS50@gmail.com">prioritas.CS50@gmail.com</a>.
+				</text>	</div>	
 		</div>
 	</div>
 	<div class="section" id="section1">
 	    <div class="slide" id="slide1" data-anchor="slide1">
-				<h1>Using Prioritas</h1>
-				<p class="slide-text">On the main page, Prioritas features a priority matrix for keeping track of to-dos according to their level of importance and urgency. Upon clicking on a task, an action window based on the Pomodoro technique pops up, featuring a timer and a field to input the number of desired work cycles to be completed. 
-				</p>
+				<div class="title">Using Prioritas</div>
+				<p class="slide-text">On the main page, Prioritas features a priority matrix for keeping track of to-dos according to their level of importance and urgency. Upon clicking on a task, an action window based on the Pomodoro technique pops up, featuring a timer and a field to input the number of desired work cycles to be completed.
+				</p> <br> <br>
 				<img src="../static/index.png" width="520px" height="319px">
 		</div>
 		
 		<div class="slide" id="slide2" data-anchor="slide2">
-			<h2>Step 1</h2>
-			<p class="slide-text">Add tasks to the grid by typing in the appropriate text field and hitting enter. Top Left: Important things you should do right away; Bottom Left: things you want to get to at some point; Top Right: pressing but trivial tasks; Bottom right: time-wasting, avoidable things.</p>
+			<h2>Step 1: Add Tasks</h2>
+			<p class="slide-text">Add tasks to the grid by typing in the appropriate text field and hitting enter. Top Left: important things you should do right away, Bottom Left: things you want to get to at some point, Top Right: pressing but trivial tasks, and Bottom Right: time-wasting, avoidable things.</p>
 		  <div id="imageContainer">
-				<img id="step1-png" src="../static/Step1.png" width="600px" height="405px">
+				<img class="stepimg" id="step1img" src="../static/Step1.png">
 			</div>
 		</div>
 
 	    <div class="slide" id="slide3" data-anchor="slide3">
-			<h2>Step 2</h2>
+			<h2>Step 2: Set Pomodoros</h2>
 			<p class="slide-text">Click on a task to see the Pomodoro pop-up window. At the bottom, you'll see a field with the number of Pomodoros to complete for the task. Type in the number of Pomodoros you'd like to spend working on each long-term project.</p>
+			 <br>
 			<img src="../static/Step2.png" width="520px" height="351px">
 
 		</div>
 
 		<div class="slide" id="slide4" data-anchor="slide4">
-			<h2>Step 3 </h2>
-			<p class="slide-text"> Time to begin work! Click on a task, hit the start button, and begin working for 25 minutes without pause. A bell will notify you when time is up and your 5-minute break begins. Another bell will sound when your break is over, and the number of remaining Pomodoros will automatically decrease.</p>
+			<h2>Step 3: Begin Work</h2>
+			<p class="slide-text"> Time to start work! Click on a task, hit the start button, and begin working for 25 minutes without pause.  </p>
+			 <br> <br>
 			<img src="../static/Step3.png" width="520px" height="351px">
 		</div>
-		f
+		
 		<div class="slide" id="slide5" data-anchor="slide5">
-			<h2>Step 4 </h2>
-			<p class="slide-text"> Hooray, you've completed a task! Simply click the delete button to remove it from your list. </p>
+			<h2>Step 4: Take a Break</h2>
+			<p class="slide-text"> A bell will notify you when time is up and your 5-minute break begins. Another bell will sound when your break is over, and the number of remaining Pomodoros will automatically decrease. </p> <br>
 			<img src="../static/Step4.png" width="520px" height="351px">
+		</div>
+		
+		<div class="slide" id="slide6" data-anchor="slide6">
+			<h2>Step 5: Keep Going!</h2>
+			<p class="slide-text"> The app will immediately begin another Pomodoro cycle, but feel free to switch tasks between Pomodoros to keep things interesting. Once you've completed a task, simply click the delete button to remove it from your list! </p> <br>
+			<img src="../static/Step5.png" width="520px" height="351px">
 		</div>
 
 	</div>
 	
-	<div class="section" id="section2">
+	<div class="section text-section" id="section2">
 		<div class="intro">
-				<h1>The Pomodoro Technique</h1>
-				<p>
-					You can even click on the navigation and jump directly to another section.
-				</p>		
+				<div class="title">The Pomodoro Technique</div> <br>
+				<div class="section-text"><text>
+					The Pomodoro technique was invented by Francesco Cirillo and named after the tomato-shaped timer he originally used (hence, our logo!). It is a popular time-management strategy consisting of working on projects with intense focus for a block of time (usually 25 minutes), followed by a 5-minute break. Work periods are referred to as pomodoro sessions or simply pomodoros. 
+					<br><br>
+					The technique helps keep your brain alert and motivated at all times, greatly increasing productivity. In addition, it can help make large projects or long work hours seem less formidable. 
+					</text>	</div>	
 		</div>
 	</div>
 	
-	<div class="section" id="section3">
+	<div class="section text-section" id="section3">
 		<div class="intro">
 			<div class="title">Happy   Prioritas-ing!</div>
 		</div>

@@ -26,8 +26,8 @@
         <link href="static/TimeCircles.css" rel="stylesheet">
         <link href="static/TCexample.css" rel="stylesheet">
 
-        <link rel='shortcut icon' type='image/x-icon' href='templates/favicon.ico' />
-        <link rel="icon" type="image/gif" href="icon.gif">
+<!--        <link rel='shortcut icon' type='image/x-icon' href='templates/favicon.ico' />-->
+        <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
 
         
         <title class="title">
@@ -55,17 +55,17 @@
                         {% if session.user_id %}
 
                             <ul class="nav navbar-nav">
-                                <li><a href="{{ url_for('about') }}">About Me</a></li>
+                                <li><a href="{{ url_for('guide') }}">User Guide</a></li>
                                 <li><a href="{{ url_for('password')}}">Change Password</a></li>
                                 <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-                                <li style="margin-top: -8px"><a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='pomodoro.gif')}}" style="height: 35px"/></a></li>
+                                <li style="margin-top: -8px"><a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='pomodoro.png')}}" style="height: 35px"/></a></li>
                             </ul>
                         {% else %}
                             <ul class="nav navbar-nav">
-                                <li><a href="{{ url_for('about') }}">About Me</a></li>
+                                <li><a href="{{ url_for('guide') }}">User Guide</a></li>
                                 <li><a href="{{ url_for('register') }}">Register</a></li>
                                 <li><a href="{{ url_for('logout') }}">Log In</a></li>
-                                <li style="margin-top: -8px"><a href="{{ url_for('index') }}"><img src="static/pomodoro.png" style="height: 35px"/></a></li>
+                                <li style="margin-top: -8px"><a href="{{ url_for('index') }}"><img src="../static/pomodoro.png" style="height: 35px"/></a></li>
                             </ul>
                         {% endif %}
                     </div>

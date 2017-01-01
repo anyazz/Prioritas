@@ -1,9 +1,9 @@
 // declare constants
 const ENTER_KEY = 13;
 const FLASH_MS = 400;
-const CHECK_MS = 500;
-const TIMER_SECS = 1501;
-const BREAK_SECS=301;
+const CHECK_MS = 100;
+const TIMER_SECS =11;
+const BREAK_SECS=6;
 const SECS_PER_MIN = 60;
 const DONE_MS = 1000;
 const GREEN = "#518e37";
@@ -179,8 +179,25 @@ $("document").ready(function()
 			}
 		});
 	}
-	var timerdone = false;
-	
+	var work_done = false;
+	var break_done = false;
+
+	// steps to take after timer concludes
+	function workdone()
+	{
+		work_done = true;
+		console.log("timer done")
+		$("#alarm")[0].play();
+
+	}
+
+	function breakdone()
+	{
+		console.log("break done");
+		break_done = true;
+		$("#alarm")[0].play();
+	}
+
 	// Adapted from http://www.w3schools.com/howto/howto_css_modals.asp
 	function showModal(todo, category)
 	{
@@ -191,14 +208,20 @@ $("document").ready(function()
 		div.setAttribute("class", "modal");
 		div.innerHTML += ('<div class="modal-box flexContainer">' +
 			'<span id="modal-close">x</span>' + '<div id="tasks">' +
-			'<text id="modal-task">Task</text>' + '</div>' + '<div class="inside">' +
-			'<div id="modal-stopwatch" class = "main-timer stopwatch">' + '</div>' +
-			'<div id="time-btns">' +
-			'<button class="btn time-btn start" style="background-color: #7f5e5b">Start</button>' +
-			'<button class="btn time-btn stop" style="background-color: #ad544e; margin-left: 5px; margin-right: 5px">Stop</button>' +
-			'<button class="btn time-btn reset-btn" style="background-color: #cc9692">Reset</button>' +
+			'<text id="modal-task">Task</text>' + '</div>' + '<div class="inside">' + '<div class = "timers">' +
+			'<div id="work-timer" class = "main-timer">' + '</div>' +
+			'<div id="break-timer" class = "main-timer">' + '</div>' + '</div>' +
+			'<div id = "work-btns" class="time-btns">' +
+			'<button class="btn time-btn" id="work-start" style="background-color: #7f5e5b">Start</button>' +
+			'<button class="btn time-btn" id="work-stop" style="background-color: #ad544e; margin-left: 5px; margin-right: 5px">Stop</button>' +
+			'<button class="btn time-btn" id="work-reset" style="background-color: #cc9692">Reset</button>' +
 			'</div>' +
-			'<text class="modal-text"><img src="https://i.imgsafe.org/914b1905d8.png" style="height: 35px; margin-right: 7px"/>Pomodoros: </text>' +
+			'<div id = "break-btns" class="time-btns">' +
+			'<button class="btn time-btn" id="break-start" style="background-color: #7f5e5b">Start</button>' +
+			'<button class="btn time-btn" id="break-stop" style="background-color: #ad544e; margin-left: 5px; margin-right: 5px">Stop</button>' +
+			'<button class="btn time-btn" id="break-reset" style="background-color: #cc9692">Reset</button>' +
+			'</div>' +
+			'<text class="modal-text"><img src="static/pomodoro.png" style="height: 35px; margin-right: 7px"/>Pomodoros: </text>' +
 			'<input class="form-control" type="text" placeholder="#" id="time-input" type="number">' +
 			'</div>' + '</div>');
 		main.appendChild(div);
@@ -212,7 +235,6 @@ $("document").ready(function()
 			category: category,
 		}
 		console.log("showing modal")
-		
 		// get number of pomodoros from SQL table for todo
 		$.ajax(
 		{
@@ -259,40 +281,74 @@ $("document").ready(function()
 		$("#modal-close")[0].addEventListener('click', function()
 			{
 				$("#modal").remove();
-				$(".main-timer.stopwatch").TimeCircles().reset();
-				$(".main-timer.stopwatch").TimeCircles().destroy();
+				$("#work-timer").TimeCircles().destroy();
+				$("#break-timer").TimeCircles().destroy();
 			})
 		
-		// function to wait to make sure previous timer done before showing next
-		// adapted from http://stackoverflow.com/questions/8896327/jquery-wait-delay-1-second-without-executing-code
-		function check()
-		{
-			if (timerdone != true)
-			{
-				setTimeout(check, CHECK_MS)
-				console.log("waiting")
-			}
-			else
-			{
-				console.log("next timer");
-				timerdone = false;
-				
-				// change remaining pomodoros #, recursive call 
-				if ($("#time-input")[0].value > 0)
-				{
-					$("#time-input")[0].value -= 1;
-					updateTime(todo, category, $("#time-input").value)
-					check();
-				}
-			}
-		};
+		// instantiate work timer
+		timer("#work", workdone, TIMER_SECS, RED, false);
 		
-		// show first timer
-		timer(TIMER_SECS, RED, false);
-		console.log("timer shown");
-		check();
+		// instantiate break timer
+		timer("#break", breakdone, BREAK_SECS, GREEN, false);
+		startPomodoro(todo, category)
 	}
 	
+	function startPomodoro(todo, category)
+	{
+		$("#work-timer").TimeCircles().restart();
+		$("#work-timer").TimeCircles().stop();
+		$("#work-timer").show();
+		$("#work-btns").show();
+		$("#break-timer").hide();
+		$("#break-btns").hide();
+		console.log("pomodoro started");
+		workcheck(todo, category);
+	}
+	
+	// wait function to make sure previous timer done before showing next
+		// adapted from http://stackoverflow.com/questions/8896327/jquery-wait-delay-1-second-without-executing-code
+	function workcheck(todo, category)
+	{
+		if (work_done != true)
+		{
+			setTimeout(function() {workcheck(todo, category)}, CHECK_MS)
+			console.log("waiting1")
+		}
+		else
+		{
+			work_done = false;
+			console.log("break timer");
+			$("#work-timer").hide();
+			$("#work-btns").hide();
+			$("#break-timer").show();
+			$("#break-btns").show();
+			$("#break-timer").TimeCircles().restart();
+			breakcheck(todo, category);
+		}
+	};
+
+	function breakcheck(todo, category)
+	{
+		if (break_done != true)
+		{
+			setTimeout(function() {breakcheck(todo, category)}, CHECK_MS)
+			console.log("waiting2")
+		}
+		else
+		{
+			break_done = false;
+			if ($("#time-input")[0].value > 0) 
+			{
+				console.log(todo)
+				console.log(category)
+				$("#time-input")[0].value -= 1;
+				updateTime(todo, category, $("#time-input")[0].value);
+				$("#work-timer").TimeCircles().restart();
+				startPomodoro(todo, category);
+			}
+		}
+	};
+		
 	// function to update number of pomodoros in SQL table
 	function updateTime(todo, category, pomodoros)
 	{
@@ -310,22 +366,19 @@ $("document").ready(function()
 				console.log("success")
 			}
 		})
-		event.stopPropagation()
 	}
 	
 	// timer setup
 	// adapted from TimeCircles documentation
-	function timer(duration, color, start_bool)
-	{
-		$(".main-timer.stopwatch").TimeCircles().destroy();
-		var className = ".main-timer.stopwatch"
-		
+	function timer(timer_name, done_func, duration, color, start_bool)
+	{	
+		var timer_id = timer_name.concat("-timer")
 		// configure for color/length
-		var div = $("#modal-stopwatch")[0];
+		var div = $(timer_id)[0];
 		div.setAttribute("data-timer", duration);
 		
 		// instantiate timecircle JS
-		$(className).TimeCircles(
+		$(timer_id).TimeCircles(
 		{
 			animation: "smooth",
 			bg_width: 1.2,
@@ -354,17 +407,16 @@ $("document").ready(function()
 			},
 			start: start_bool
 		});
-		$(className).TimeCircles().reset();
 		
 		// Show minutes and seconds in single circle
 		// Creds @stackoverflow.com/questions/25264887/jquery-timecircles-display-minutes-and-seconds-in-one-circle
-		var newClass = className.concat(" .textDiv_Minutes");
+		var newClass = timer_id.concat(" .textDiv_Minutes");
 		var $container = $(newClass);
 		$container.find('h4').text('Time left');
 		var $original = $container.find('span');
 		var $clone = $original.clone().appendTo($container);
 		$original.hide();
-		$(className).TimeCircles().addListener(function(unit, value, total)
+		$(timer_id).TimeCircles().addListener(function(unit, value, total)
 		{
 			total = Math.abs(total);
 			var minutes = Math.floor(total / SECS_PER_MIN) % SECS_PER_MIN;
@@ -372,50 +424,34 @@ $("document").ready(function()
 			if (seconds < MAX_DIGIT) seconds = "0" + seconds;
 			$clone.text(minutes + ':' + seconds);
 		}, "all");
-		$(className).TimeCircles().addListener(function(unit, value, total)
+		
+		$(timer_id).TimeCircles().addListener(function(unit, value, total)
 		{
-			if (total==BREAK_SECS)
-			{
-				// setTimeout(breaktimer, DONE_MS);
-				breaktimer();
-				
-			}
 			if (total == 0)
 			{
 				// timeout, since TimeCircles usually stops a second early 
-				setTimeout(done, DONE_MS);
+				setTimeout(done_func, DONE_MS);
 			}
 		}, "all");
 		
-		// steps to take after timer concludes
-		function done()
-		{
-			$(".main-timer.stopwatch").TimeCircles().reset()
-			$(".main-timer.stopwatch").TimeCircles().stop()
-			timerdone = true;
-			console.log("timer1 done")
-			$("#alarm")[0].play();
-		}
-		
-		function breaktimer()
-		{
-			$("#alarm")[0].play();
-			// $(className).TimeCircles().destroy();
-			// timer(BREAK_SECS, GREEN, true);
-		}
-		
+		var start_id = timer_name.concat("-start");
+		var stop_id = timer_name.concat("-stop");
+		var reset_id = timer_name.concat("-reset");
 		// button functionality
-		$(".start").click(function()
+		$(start_id).click(function()
 		{
-			$(className).TimeCircles().start();
+			$(timer_id).TimeCircles().start();
 		});
-		$(".stop").click(function()
+		$(stop_id).click(function()
 		{
-			$(className).TimeCircles().stop();
+			$(timer_id).TimeCircles().stop();
 		});
-		$(".reset-btn").click(function()
+		$(reset_id).click(function()
 		{
-			$(className).TimeCircles().reset();
+			$("#work-timer").TimeCircles().restart();
+			$("#work-timer").TimeCircles().stop();
+			work_done = false;
+			startPomodoro();
 		});
 	}
 });

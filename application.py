@@ -109,7 +109,7 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
     
-@app.route("/", methods=["GET", "POST"])
+@app.route("/index", methods=["GET", "POST"])
 @login_required
 def index():
     """Home page."""
@@ -133,10 +133,10 @@ def index():
     # return
     return render_template("index.html", list1 = list1, list2 = list2, list3 = list3, list4 = list4)
 
-@app.route("/about")
-def about():
-    """About me page"""
-    return render_template("about.html")
+@app.route("/")
+def guide():
+    """User's guide page"""
+    return render_template("guide.html")
     
 @app.route("/login", methods=["GET", "POST"])
 def login():

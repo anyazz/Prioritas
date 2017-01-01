@@ -2,7 +2,12 @@
     width: 800px;
     height: 200px;
     margin-bottom: 10px;
-    position: relative;    
+    position: absolute; 
+    top: 17%;
+    left: 12%;
+    height: 75%;
+    width: 75%;
+    font-size: 30px;
 
 }
 small.codeType {

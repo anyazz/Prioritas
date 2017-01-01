@@ -12,10 +12,11 @@ const RED = "#ad544e";
 const DARK_GREY = "#5a4f4e";
 const MAX_DIGIT = 10;
 
+
 $("document").ready(function()
 {
 	// listen for text from input field 1
-	document.getElementById("input1").addEventListener('keypress', function(e)
+	$("#input1")[0].addEventListener('keypress', function(e)
 		{
 			var key = e.which || e.keyCode;
 			if (key === ENTER_KEY)
@@ -25,7 +26,7 @@ $("document").ready(function()
 		})
 		
 	// listen for text from input field 2
-	document.getElementById("input2").addEventListener('keypress', function(e)
+	$("#input2")[0].addEventListener('keypress', function(e)
 		{
 			var key = e.which || e.keyCode;
 			if (key === ENTER_KEY)
@@ -35,7 +36,7 @@ $("document").ready(function()
 		})
 		
 	// listen for text from input field 3
-	document.getElementById("input3").addEventListener('keypress', function(e)
+	$("#input3")[0].addEventListener('keypress', function(e)
 		{
 			var key = e.which || e.keyCode;
 			if (key === ENTER_KEY)
@@ -45,7 +46,7 @@ $("document").ready(function()
 		})
 		
 	// listen for text from input field 4
-	document.getElementById("input4").addEventListener('keypress', function(e)
+	$("#input4")[0].addEventListener('keypress', function(e)
 		{
 			var key = e.which || e.keyCode;
 			if (key === ENTER_KEY)
@@ -103,27 +104,30 @@ $("document").ready(function()
 	}
 	
 	// call clickTodo when any list clicked
-	document.getElementById("list1").addEventListener('click', clickTodo, false);
-	document.getElementById("list2").addEventListener('click', clickTodo, false);
-	document.getElementById("list3").addEventListener('click', clickTodo, false);
-	document.getElementById("list4").addEventListener('click', clickTodo, false);
+	$("#list1")[0].addEventListener('click', clickTodo, false);
+	$("#list2")[0].addEventListener('click', clickTodo, false);
+	$("#list3")[0].addEventListener('click', clickTodo, false);
+	$("#list4")[0].addEventListener('click', clickTodo, false);
 	
 	// THANK JESUS FOR "T.J." XD adapted from @http://stackoverflow.com/questions/30150347/delete-parent-element-with-javascript
 	function clickTodo(e)
 	{
 		var btn = e.target;
 		var buttonclicked = true;
-		var listid = btn.parentNode.parentNode.id
-		var category = listid.slice(-1)
 		
 		// check to see if btn (click target) was text (div) w/ only 1 child node or list item w/ multiple
 		if (btn.childNodes.length == 1)
 		{
 			var todo = btn.parentNode.childNodes[1].innerHTML
+			var listid = btn.parentNode.parentNode.id
+			var listid = btn.parentNode.parentNode.id
+			var category = listid.slice(-1)
 		}
 		else
 		{
 			var todo = btn.childNodes[1].innerHTML
+			var listid = btn.parentNode.id
+			var category = listid.slice(-1)
 		}
 		
 		// start with the element that was the target of the
@@ -200,7 +204,7 @@ $("document").ready(function()
 		main.appendChild(div);
 		
 		// update task title
-		document.getElementById("modal-task").innerHTML = todo;
+		$("#modal-task")[0].innerHTML = todo;
 		
 		// config Timer & load default pomodoro value from SQL
 		var parameters = {
@@ -219,20 +223,20 @@ $("document").ready(function()
 			{
 				var pomodoros = data[0]["pomodoros"];
 				console.log(pomodoros)
-				document.getElementById("time-input").value = pomodoros;
+				$("#time-input")[0].value = pomodoros;
 			}
 		});
 		
 		// display modal 
-		document.getElementById('modal').style.display = "block";
+		$("#modal")[0].style.display = "block";
 		
 		// update pomodoros from input field
 		// listen for text from input field
-		document.getElementById("time-input").addEventListener('keypress', function(
+		$("#time-input")[0].addEventListener('keypress', function(
 				e)
 			{
 				var key = e.which || e.keyCode;
-				var pomodoros = document.getElementById("time-input").value;
+				var pomodoros = $("#time-input")[0].value;
 				if (key === ENTER_KEY && pomodoros != '')
 				{
 				    // update
@@ -241,7 +245,7 @@ $("document").ready(function()
                     // flash green
 					function changeColor(color)
 					{
-						document.getElementById("time-input").style.color = color;
+						$("#time-input")[0].style.color = color;
 					}
 					changeColor(GREEN);
 					setTimeout(function()
@@ -252,14 +256,13 @@ $("document").ready(function()
 			})
 		
 		// When the user clicks on (x), close the modal & reset timer
-		document.getElementById("modal-close").addEventListener('click', function()
+		$("#modal-close")[0].addEventListener('click', function()
 			{
 				$("#modal").remove();
-				$(".main-timer.stopwatch").TimeCircles().reset();
 				$(".main-timer.stopwatch").TimeCircles().destroy();
 			})
 		
-		// function to wait to make sure previous timer done before showing next
+		// wait function to make sure previous timer done before showing next
 		// adapted from http://stackoverflow.com/questions/8896327/jquery-wait-delay-1-second-without-executing-code
 		function check()
 		{
@@ -274,10 +277,10 @@ $("document").ready(function()
 				timerdone = false;
 				
 				// change remaining pomodoros #, recursive call 
-				if (document.getElementById("time-input").value > 0)
+				if ($("#time-input")[0].value > 0)
 				{
-					document.getElementById("time-input").value -= 1;
-					updateTime(todo, category, document.getElementById("time-input").value)
+					$("#time-input")[0].value -= 1;
+					updateTime(todo, category, $("#time-input")[0].value);
 					check();
 				}
 			}
@@ -299,7 +302,7 @@ $("document").ready(function()
 		}
 		$.ajax(
 		{
-				url: Flask.url_for("updateTime"),
+			url: Flask.url_for("updateTime"),
 			data: parameters,
 			success: function()
 			{
@@ -312,11 +315,10 @@ $("document").ready(function()
 	// adapted from TimeCircles documentation
 	function timer(duration, color, start_bool)
 	{
-		$(".main-timer.stopwatch").TimeCircles().destroy();
 		var className = ".main-timer.stopwatch"
 		
 		// configure for color/length
-		var div = document.getElementById("modal-stopwatch");
+		var div = $("#modal-stopwatch")[0];
 		div.setAttribute("data-timer", duration);
 		
 		// instantiate timecircle JS
@@ -349,7 +351,6 @@ $("document").ready(function()
 			},
 			start: start_bool
 		});
-		$(className).TimeCircles().reset();
 		
 		// Show minutes and seconds in single circle
 		// Creds @stackoverflow.com/questions/25264887/jquery-timecircles-display-minutes-and-seconds-in-one-circle
@@ -369,12 +370,6 @@ $("document").ready(function()
 		}, "all");
 		$(className).TimeCircles().addListener(function(unit, value, total)
 		{
-			if (total==BREAK_SECS)
-			{
-				// setTimeout(breaktimer, DONE_MS);
-				breaktimer();
-				
-			}
 			if (total == 0)
 			{
 				// timeout, since TimeCircles usually stops a second early 
@@ -385,16 +380,18 @@ $("document").ready(function()
 		// steps to take after timer concludes
 		function done()
 		{
-			$(".main-timer.stopwatch").TimeCircles().reset()
+			$(".main-timer.stopwatch").TimeCircles().restart()
 			$(".main-timer.stopwatch").TimeCircles().stop()
 			timerdone = true;
 			console.log("timer1 done")
-			document.getElementById("alarm").play();
+			$("#alarm")[0].play();
+
+
 		}
 		
 		function breaktimer()
 		{
-			document.getElementById("alarm").play();
+			$("#alarm")[0].play();
 			// $(className).TimeCircles().destroy();
 			// timer(BREAK_SECS, GREEN, true);
 		}
@@ -410,7 +407,9 @@ $("document").ready(function()
 		});
 		$(".reset-btn").click(function()
 		{
-			$(className).TimeCircles().reset();
+			$(className).TimeCircles().restart();
+			$(className).TimeCircles().stop();
+
 		});
 	}
 });
